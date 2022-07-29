@@ -7,6 +7,7 @@ import com.demo.emp.repository.EmpRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -64,19 +65,18 @@ public class EmpService {
         ExistingEmployee.setDesignation(Employee.getDesignation());
          return repository.save(ExistingEmployee);
     }
-    public EmpClass update(Integer id,int salary){
-        Optional<EmpClass>employee=repository.findById(id);
-        if(employee.isPresent())
-        {
-            EmpClass obj = employee.get();
-            obj.setSalary(salary);
-            repository.save(obj);
-            return obj;
-
-        }
-
-        return null;
+    public EmpClass updEmployee(EmpClass Employee, int id)
+    {
+        EmpClass eda;
+        eda = repository.findById(Employee.getId());
+        eda.setName(Employee.getName());
+        eda.setSalary(Employee.getSalary());
+        eda.setDesignation(Employee.getDesignation());
+        repository.save(eda);
+        return eda;
     }
+
+
 
     // to delete the Employee
     public String deleteEmployee(int id) {

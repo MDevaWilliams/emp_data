@@ -40,10 +40,9 @@ public class EmpController {
         return service.editEmployee(Employee);
     }
 
-    @PutMapping("/EmployeePut/{salary}")
-    public EmpClass update(@PathVariable("salary")int salary,int id)
-    {
-        return service.update(id,salary);
+    @PutMapping("/Employee/{id}/{salary}")
+    public EmpClass updEmployee(@PathVariable int salary, @PathVariable int id, @RequestBody EmpClass Employee) {
+        return service.updEmployee(Employee, id);
     }
 
     @DeleteMapping("/EmployeeDel/{id}")
